@@ -7,6 +7,8 @@ function App() {
   const [counter, setCounter] = useState(0); // useState Hook für Aufgabe 1
   const [checkbox, setCheckbox] = useState(true);
   const [text, setText] = useState("");
+  const [align, setAlign] = useState("left");
+  const [fontSize, setFontSize] = useState(10);
   // Du benötigst für jede Aufgabe einen weiteren "useState-Hook", welchen du am besten hier platzierst. Achte darauf, einen passenden Datentype als "default Wert" anzugeben.
 
   return (
@@ -109,13 +111,9 @@ function App() {
            */}
           <select
             className="Dropdown"
+            value={align}
             onChange={(event) => {
-              console.log(
-                "event.target.value ist: ",
-                event.target.value,
-                " der Datentype ist: ",
-                typeof event.target.value,
-              );
+              setAlign(event.target.value);
             }}
           >
             <option value="left">Links</option>
@@ -129,12 +127,23 @@ function App() {
            */}
 
           <div>
+            <select
+              className="Dropdown"
+              value={fontSize}
+              onChange={(event) => setFontSize(parseInt(event.target.value))}
+            >
+              <option value="4">4</option>
+              <option value="12">12</option>
+              <option value="14">14</option>
+              <option value="16">16</option>
+              <option value="34">34</option>
+            </select>
             <p
               id="DynamicText"
               style={
                 {
-                  textAlign: "center",
-                  fontSize: 10,
+                  textAlign: align,
+                  fontSize: fontSize,
                 } /* Diese statischen Werte möchtest du an "State" binden. Überprüfe ob deine Interaktionen den Text verändert  */
               }
             >
